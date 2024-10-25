@@ -1,10 +1,10 @@
-package edu.fra.uas.test;
+package edu.fra.uas.ErstesSpringBoot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TestApplicationTests {
+class ErstesSpringBootApplicationTests {
 
 	@Test
 	void contextLoads() {
