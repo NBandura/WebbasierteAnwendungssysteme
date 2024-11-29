@@ -3,6 +3,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 @Component
 public class NotenService {
     private double notenSumme = 0;
@@ -30,4 +33,18 @@ public class NotenService {
         log.debug("AnzahlNoten berechnet: " + anzahlNoten);
         return anzahlNoten;
     }
+
+    @PostConstruct
+    public void PostConstruct() {
+        log.debug("NotenService initialisiert");
+    }
+
+    @PreDestroy
+    public void PreDestroy() {
+        this.notenSumme = 0;
+        this.anzahlNoten = 0;
+        log.debug("NotenService beendet und daten Gelöscht");
+    }
+
+
 }
