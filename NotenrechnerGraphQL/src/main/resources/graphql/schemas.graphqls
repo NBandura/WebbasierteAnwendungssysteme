@@ -1,0 +1,21 @@
+
+# User type defines the structure of a User object
+type Note {
+    id: ID!
+    nachname: String!
+    fach: String!
+    wert: Int!
+}
+
+# Query type defines all the read operations
+type Query {
+    getAllNoten: [Note]!
+    notenbyFach(fach: String): [Note]!
+    notenbyNachname(nachname: String): ID!
+}
+
+# Mutation type defines all the post, put and delete operations
+type Mutation {
+    addNote(id: ID!, nachname: String!, fach: String!, wert:Int!): Note!
+    deleteNote(id: ID!): Int
+}

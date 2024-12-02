@@ -29,10 +29,10 @@ public class NotenApiController {
     private NotenService NotenService;
 
     @GetMapping
-    (value = "/Noten", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<HashMap<Integer,Note>> getNoten() {
-        HashMap<Integer,Note> Noten = NotenService.getAllNoten();
+    public ResponseEntity<HashMap<Long,Note>> getNoten() {
+        HashMap<Long,Note> Noten = NotenService.getAllNoten();
         if (Noten.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
@@ -41,10 +41,10 @@ public class NotenApiController {
     }
 
     @GetMapping
-    (value = "/Noten/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<HashMap<Integer,Note>> getNotenByName(@PathVariable("name") String name) {
-        HashMap<Integer,Note> Noten = NotenService.getNotenByName(name);
+    public ResponseEntity<HashMap<Long,Note>> getNotenByName(@PathVariable("name") String name) {
+        HashMap<Long,Note> Noten = NotenService.getNotenByName(name);
         if (Noten.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
@@ -53,10 +53,10 @@ public class NotenApiController {
     }
 
     @GetMapping
-    (value = "/Noten/fach/{fach}", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten/fach/{fach}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<HashMap<Integer,Note>> getNotenByFach(@PathVariable("fach") String fach) {
-        HashMap<Integer,Note> Noten = NotenService.getNotenByFach(fach);
+    public ResponseEntity<HashMap<Long,Note>> getNotenByFach(@PathVariable("fach") String fach) {
+        HashMap<Long,Note> Noten = NotenService.getNotenByFach(fach);
         if (Noten.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
@@ -65,7 +65,7 @@ public class NotenApiController {
     }
 
     @GetMapping
-    (value = "/Noten/durchschnitt", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten/durchschnitt", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Double> getDurchschnitt() {
         double durchschnitt = NotenService.getDurchschnitt(NotenService.getAllNoten());
@@ -73,7 +73,7 @@ public class NotenApiController {
     }
 
     @GetMapping
-    (value = "/Noten/durchschnitt/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten/durchschnitt/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Double> getDurchschnittByName(@PathVariable("name") String name) {
         double durchschnitt = NotenService.getDurchschnitt(NotenService.getNotenByName(name));
@@ -81,25 +81,26 @@ public class NotenApiController {
     }
 
     @GetMapping
-    (value = "/Noten/durchschnitt/fach/{fach}", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten/durchschnitt/fach/{fach}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Double> getDurchschnittByFach(@PathVariable("fach") String fach) {
         double durchschnitt = NotenService.getDurchschnitt(NotenService.getNotenByFach(fach));
         return ResponseEntity.ok(durchschnitt);
     }
 
-    @PostMapping
-    (value = "/Noten/add", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addNote(@RequestBody Note NeueNote) {
-        System.out.println(NeueNote.getNachname());
+    @PostMapping 
+    (value = "/noten/add",   produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> addNote(@RequestBody Note note) {
+        System.out.println(note.getNachname());
         //Note tesNote=new Note(0, "mdawd", "adw", 2);
-        NotenService.createNote(NeueNote);
-        return ResponseEntity.ok(NeueNote);
+        NotenService.createNote(note);
+        return ResponseEntity.ok(note);
     }
 
 
     @DeleteMapping
-    (value = "/Noten/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    (value = "/noten/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Note> deleteNote(@PathVariable("id") int id) {
         Note Note = NotenService.getNote(id);

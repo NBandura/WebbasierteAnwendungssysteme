@@ -1,6 +1,8 @@
 package edu.fra.uas.service;
 
 import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.fra.uas.model.Note;
@@ -24,8 +26,8 @@ public class NotenService {
         return NotenRepository.get(id);
     }
 
-    public HashMap<Long, Note> getAllNoten() {
-        return NotenRepository;
+    public Iterable<Note> getAllNoten() {
+        return NotenRepository.values();
     }
 
     public Note updateNote (Note Note) {
@@ -48,25 +50,27 @@ public class NotenService {
         return sum / Notenliste.size();
     }
 
-    public HashMap<Long, Note> getNotenByName (String name) {
+    public Iterable<Note> getNotenByName (String name) {
         HashMap<Long, Note> Noten = new HashMap<>();
         for (Note n : NotenRepository.values()) {
             if (n.getNachname().equals(name)) {
                 Noten.put(n.getId(), n);
             }
         }
-        return Noten;
+        return Noten.values();
     }
 
-    public HashMap<Long, Note> getNotenByFach (String fach) {
+    public Iterable<Note> getNotenByFach (String fach) {
         HashMap<Long, Note> Noten = new HashMap<>();
         for (Note n : NotenRepository.values()) {
             if (n.getFach().equals(fach)) {
                 Noten.put(n.getId(), n);
             }
         }
-        return Noten;
+        return Noten.values();
     }
+
+    
 
    
 

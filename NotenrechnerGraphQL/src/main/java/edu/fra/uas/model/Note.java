@@ -9,11 +9,9 @@ public class Note {
     private int wert;
 
     public Note() {
-        System.out.println("Falsch");
     }
 
     public Note(long id,String nachname, String fach, int wert) {
-        System.out.println("Konstrukto Note: id: " + id + " nachname: " + nachname + " fach: " + fach + " wert: " + wert);
         this.id = id;
         this.nachname = nachname;
         this.fach = fach;

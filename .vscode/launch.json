@@ -20,6 +20,16 @@
             "projectName": "NotenrechnerAPI",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotenrechnerGraphQlApplication<NotenrechnerGraphQL>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "edu.fra.uas.NotenrechnerGraphQlApplication",
+            "projectName": "NotenrechnerGraphQL",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
