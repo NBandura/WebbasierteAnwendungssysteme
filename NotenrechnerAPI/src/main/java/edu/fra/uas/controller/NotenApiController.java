@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -88,13 +89,14 @@ public class NotenApiController {
     }
 
     @PostMapping
-    (value = "/Noten/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
+    (value = "/Noten/add", consumes = MediaType.APPLICATION_JSON_VALUE,  produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addNote(@RequestBody Note NeueNote) {
         System.out.println(NeueNote.getNachname());
+        //Note tesNote=new Note(0, "mdawd", "adw", 2);
         NotenService.createNote(NeueNote);
         return ResponseEntity.ok(NeueNote);
     }
+
 
     @DeleteMapping
     (value = "/Noten/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -104,6 +106,7 @@ public class NotenApiController {
         NotenService.deleteNote(Note);
         return ResponseEntity.ok(Note);
     }
+
 
 
 
